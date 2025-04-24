@@ -18,6 +18,7 @@ class RegisterController extends GetxController {
       Get.snackbar("Berhasil", "Akun Berhasil Dibuat");
       } on AuthException catch (e){
         Get.snackbar("Gagal", e.message);
+        Get.back();
       } catch (e){
         Get.snackbar("Error", e.toString());
       } finally {
