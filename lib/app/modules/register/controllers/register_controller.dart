@@ -13,10 +13,19 @@ class RegisterController extends GetxController {
   void signup()async{
     if(emailC.text.isNotEmpty && passC.text.isNotEmpty){
       isLoading.value = true;
+      try {
       AuthResponse res = await client.auth.signUp(email: emailC.text ,password: passC.text);
-      isLoading.value = false;
+      Get.snackbar("Berhasil", "Akun Berhasil Dibuat");
+      } on AuthException catch (e){
+        Get.snackbar("Gagal", e.message);
+      } catch (e){
+        Get.snackbar("Error", e.toString());
+      } finally {
+        isLoading.value = false;
+      } 
 
-      if (){}
+      
+      
     } else {
       Get.snackbar("Terjadi Kesalahan", "Email dan password belum diisi");
     }
