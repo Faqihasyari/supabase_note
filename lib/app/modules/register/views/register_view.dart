@@ -45,7 +45,8 @@ class RegisterView extends GetView<RegisterController> {
             ),
             Obx(() => ElevatedButton(onPressed: () {
               if(controller.isLoading.isFalse){
-                //eksekusi login
+                //eksekusi register
+                controller.signup();
               }
             }, child: Text(controller.isLoading.isFalse ?'REGISTER' : 'LOADING')))
           ],

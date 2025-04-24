@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:supabase_note/app/routes/app_pages.dart';
 
 import '../controllers/login_controller.dart';
 
@@ -35,7 +36,9 @@ class LoginView extends GetView<LoginController> {
                 decoration: InputDecoration(
                     suffixIcon: IconButton(
                         onPressed: () => controller.isHidden.toggle(),
-                        icon: controller.isHidden.isTrue ? Icon(Icons.remove_red_eye) : Icon(Icons.remove_red_eye_outlined)),
+                        icon: controller.isHidden.isTrue
+                            ? Icon(Icons.remove_red_eye)
+                            : Icon(Icons.remove_red_eye_outlined)),
                     labelText: "Password",
                     border: OutlineInputBorder()),
               ),
@@ -43,12 +46,20 @@ class LoginView extends GetView<LoginController> {
             SizedBox(
               height: 20,
             ),
-            Obx(() => ElevatedButton(onPressed: () {
-              if(controller.isLoading.isFalse){
-                //eksekusi login
-              }
-            }, child: Text(controller.isLoading.isFalse ?'LOGIN' : 'LOADING'))),
-            SizedBox(height: 10,)
+            Obx(() => ElevatedButton(
+                onPressed: () {
+                  if (controller.isLoading.isFalse) {
+                    //eksekusi login
+                  }
+                },
+                child:
+                    Text(controller.isLoading.isFalse ? 'LOGIN' : 'LOADING'))),
+            SizedBox(
+              height: 10,
+            ),
+            TextButton(
+                onPressed: () => Get.toNamed(Routes.REGISTER),
+                child: Text("Register"))
           ],
         ));
   }
