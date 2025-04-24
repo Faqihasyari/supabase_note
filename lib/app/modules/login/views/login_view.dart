@@ -47,7 +47,8 @@ class LoginView extends GetView<LoginController> {
               if(controller.isLoading.isFalse){
                 //eksekusi login
               }
-            }, child: Text(controller.isLoading.isFalse ?'LOGIN' : 'LOADING')))
+            }, child: Text(controller.isLoading.isFalse ?'LOGIN' : 'LOADING'))),
+            SizedBox(height: 10,)
           ],
         ));
   }
