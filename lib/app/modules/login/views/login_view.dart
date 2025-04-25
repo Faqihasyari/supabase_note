@@ -50,6 +50,7 @@ class LoginView extends GetView<LoginController> {
                 onPressed: () {
                   if (controller.isLoading.isFalse) {
                     //eksekusi login
+                    controller.login();
                   }
                 },
                 child:
