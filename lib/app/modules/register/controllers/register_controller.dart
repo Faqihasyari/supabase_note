@@ -14,15 +14,26 @@ class RegisterController extends GetxController {
   SupabaseClient client = Supabase.instance.client;
 
   void signup() async {
-    if (nameC.text.isNotEmpty && emailC.text.isNotEmpty && passC.text.isNotEmpty) {
+    if (nameC.text.isNotEmpty &&
+        emailC.text.isNotEmpty &&
+        passC.text.isNotEmpty) {
       isLoading.value = true;
       try {
         AuthResponse res =
             await client.auth.signUp(email: emailC.text, password: passC.text);
-        Get.snackbar("Berhasil", "Akun Berhasil Dibuat");
         //insert data ke table
-        
-        Get.offAllNamed(Routes.HOME);
+        if (res.user != null) {
+          final response = await client.from("users").insert({
+            "uid": res.user!.id,
+            "email": emailC.text,
+            "name": nameC.text,
+            "created_at": DateTime.now().toIso8601String(),
+          });
+
+          Get.snackbar("Berhasil", "Akun Berhasil Dibuat");
+
+          Get.offAllNamed(Routes.HOME);
+        }
       } on AuthException catch (e) {
         Get.snackbar("Gagal", e.message);
         Get.back();
@@ -31,17 +42,6 @@ class RegisterController extends GetxController {
       } finally {
         isLoading.value = false;
       }
-      // Get.defaultDialog(
-      //   barrierDismissible: false,
-      //     title: "BERHASIL REGISTER",
-      //     middleText: "Periksa dan lakukan email konfirmasi",
-      //     actions: [
-      //       OutlinedButton(
-      //           onPressed: () {
-      //             Get.back(); //Buat tutup dialog
-      //             Get.back(); //Kembali ke login
-      //           }, child: Text("Oke Saya Mengerti"))
-      //     ]);
     } else {
       Get.snackbar("Terjadi Kesalahan", "Email dan password belum diisi");
     }

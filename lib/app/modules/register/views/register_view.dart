@@ -18,6 +18,16 @@ class RegisterView extends GetView<RegisterController> {
           children: [
             TextField(
               autocorrect: false,
+              controller: controller.nameC,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(
+                  labelText: "Name", border: OutlineInputBorder()),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TextField(
+              autocorrect: false,
               controller: controller.emailC,
               textInputAction: TextInputAction.next,
               decoration: InputDecoration(
@@ -35,7 +45,9 @@ class RegisterView extends GetView<RegisterController> {
                 decoration: InputDecoration(
                     suffixIcon: IconButton(
                         onPressed: () => controller.isHidden.toggle(),
-                        icon: controller.isHidden.isTrue ? Icon(Icons.remove_red_eye) : Icon(Icons.remove_red_eye_outlined)),
+                        icon: controller.isHidden.isTrue
+                            ? Icon(Icons.remove_red_eye)
+                            : Icon(Icons.remove_red_eye_outlined)),
                     labelText: "Password",
                     border: OutlineInputBorder()),
               ),
@@ -43,12 +55,15 @@ class RegisterView extends GetView<RegisterController> {
             SizedBox(
               height: 20,
             ),
-            Obx(() => ElevatedButton(onPressed: () {
-              if(controller.isLoading.isFalse){
-                //eksekusi register
-                controller.signup();
-              }
-            }, child: Text(controller.isLoading.isFalse ?'REGISTER' : 'LOADING')))
+            Obx(() => ElevatedButton(
+                onPressed: () {
+                  if (controller.isLoading.isFalse) {
+                    //eksekusi register
+                    controller.signup();
+                  }
+                },
+                child: Text(
+                    controller.isLoading.isFalse ? 'REGISTER' : 'LOADING')))
           ],
         ));
   }
