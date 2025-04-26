@@ -11,14 +11,14 @@ class LoginController extends GetxController {
 
   SupabaseClient client = Supabase.instance.client;
 
-  void login() async {
+  Future<bool?> login() async {
     if (emailC.text.isNotEmpty && passC.text.isNotEmpty) {
       isLoading.value = true;
       try {
         AuthResponse res = await client.auth
             .signInWithPassword(email: emailC.text, password: passC.text);
         Get.snackbar("Berhasil", "Login Telah Berhasil");
-        Get.offAllNamed(Routes.HOME);
+        return true;
       } on AuthException catch (e) {
         Get.snackbar("Gagal", e.message);
         Get.back();

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_note/app/routes/app_pages.dart';
 
 class AuthController extends GetxController {
   Timer? authTimer;
@@ -12,8 +13,19 @@ class AuthController extends GetxController {
     }
 
     authTimer = Timer(
-      Duration(seconds: 3600),
-      () async => await client.auth.signOut(),
+      Duration(seconds: 20),
+      () async {
+        await client.auth.signOut();
+        Get.offAllNamed(Routes.LOGIN);
+      },
     );
+    print("Auto Logout sedang berjalan");
+  }
+
+  Future<void> reset() async {
+    if (authTimer != null) {
+      authTimer!.cancel();
+      authTimer = null;
+    }
   }
 }

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:supabase_note/app/controllers/auth_controller.dart';
+import 'package:supabase_note/app/routes/app_pages.dart';
 
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({super.key});
+  final authC = Get.find<AuthController>();
+  HomeView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +16,15 @@ class HomeView extends GetView<HomeController> {
         title: const Text('HOME'),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () => controller.logout(), icon: Icon(Icons.logout))
+          IconButton(
+            onPressed: () async {
+              await controller.logout();
+              await authC.reset();
+    Get.offAllNamed(Routes.LOGIN);
+
+            },
+            icon: Icon(Icons.logout),
+          )
         ],
       ),
       body: const Center(
