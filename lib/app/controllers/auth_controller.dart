@@ -13,7 +13,7 @@ class AuthController extends GetxController {
     }
 
     authTimer = Timer(
-      Duration(seconds: 20),
+      Duration(seconds: 3600),
       () async {
         await client.auth.signOut();
         Get.offAllNamed(Routes.LOGIN);
