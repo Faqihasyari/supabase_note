@@ -29,9 +29,7 @@ class RegisterController extends GetxController {
             "name": nameC.text,
             "created_at": DateTime.now().toIso8601String(),
           });
-
           Get.snackbar("Berhasil", "Akun Berhasil Dibuat");
-
           Get.offAllNamed(Routes.HOME);
         }
       } on AuthException catch (e) {
