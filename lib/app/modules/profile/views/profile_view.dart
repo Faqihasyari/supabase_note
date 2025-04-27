@@ -10,15 +10,12 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ProfileView'),
+        title: const Text('MY PROFILE'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'ProfileView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      body: ListView(
+        
+      )
     );
   }
 }
