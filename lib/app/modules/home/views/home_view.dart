@@ -16,16 +16,16 @@ class HomeView extends GetView<HomeController> {
         title: const Text('HOME'),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () => Get.toNamed(Routes.PROFILE), icon: Icon(Icons.person)),
-          IconButton(
-            onPressed: () async {
-              await controller.logout();
-              await authC.reset();
-    Get.offAllNamed(Routes.LOGIN);
+          IconButton(onPressed: () => Get.toNamed(Routes.PROFILE), icon: Icon(Icons.person))
+    //       IconButton(
+    //         onPressed: () async {
+    //           await controller.logout();
+    //           await authC.reset();
+    // Get.offAllNamed(Routes.LOGIN);
 
-            },
-            icon: Icon(Icons.logout),
-          )
+    //         },
+    //         icon: Icon(Icons.logout),
+    //       )
         ],
       ),
       body: const Center(
