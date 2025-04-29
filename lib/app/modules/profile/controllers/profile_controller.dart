@@ -12,7 +12,17 @@ class ProfileController extends GetxController {
   SupabaseClient client = Supabase.instance.client;
 
   Future<void> getProfile() async {
-    List<Map<String, dynamic>> res = await client.from("users").select('email');
+    List<Map<String, dynamic>> res = await client.from("users").select().match({
+      "uid": client.auth.currentUser!.id,
+    });
+
+    if (res.isNotEmpty) {
+      var user = res.first;
+      nameC.text = user["name"];
+      emailC.text = user["email"];
+    } else {
+      print("User not found");
+    }
 
     print(res);
   }

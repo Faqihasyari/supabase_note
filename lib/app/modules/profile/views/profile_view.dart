@@ -30,6 +30,11 @@ class ProfileView extends GetView<ProfileController> {
         body: FutureBuilder(
             future: controller.getProfile(),
             builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
               return ListView(
                 padding: EdgeInsets.all(20),
                 children: [
@@ -52,6 +57,10 @@ class ProfileView extends GetView<ProfileController> {
                   ),
                   SizedBox(
                     height: 20,
+                  ),
+                  Text("Last Login :"),
+                  SizedBox(
+                    height: 50,
                   ),
                   Obx(() => ElevatedButton(
                       onPressed: () {
