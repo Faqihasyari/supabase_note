@@ -58,7 +58,24 @@ class ProfileView extends GetView<ProfileController> {
                   SizedBox(
                     height: 20,
                   ),
-                  Text("Last Login :"),
+                  Text(
+                    "Last Login :",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 7,
+                  ),
+                  Obx(
+                    () => Text(
+                      "${controller.lastLogin}",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
                   SizedBox(
                     height: 50,
                   ),

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProfileController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isHidden = true.obs;
+  RxString lastLogin = "-".obs;
   TextEditingController nameC = TextEditingController(text: "Faqih");
   TextEditingController emailC = TextEditingController();
   TextEditingController passC = TextEditingController();
@@ -23,6 +25,9 @@ class ProfileController extends GetxController {
     } else {
       print("User not found");
     }
+    lastLogin.value = DateFormat.yMMMEd()
+        .add_jms()
+        .format(DateTime.parse(client.auth.currentUser!.lastSignInAt!));
 
     print(res);
   }
