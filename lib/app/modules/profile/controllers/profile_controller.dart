@@ -1,23 +1,23 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProfileController extends GetxController {
-  //TODO: Implement ProfileController
+  RxBool isLoading = false.obs;
+  RxBool isHidden = true.obs;
+  TextEditingController nameC = TextEditingController(text: "Faqih");
+  TextEditingController emailC = TextEditingController();
+  TextEditingController passC = TextEditingController();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  SupabaseClient client = Supabase.instance.client;
+
+  Future<void> getProfile() async {
+    List<Map<String, dynamic>> res = await client.from("users").select('email');
+
+    print(res);
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  Future<void> logout() async {
+    await client.auth.signOut();
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
