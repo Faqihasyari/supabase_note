@@ -49,11 +49,31 @@ class ProfileView extends GetView<ProfileController> {
                     height: 20,
                   ),
                   TextField(
+                    readOnly: true,
                     autocorrect: false,
                     controller: controller.emailC,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                         labelText: "Email", border: OutlineInputBorder()),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Obx(
+                    () => TextField(
+                      obscureText: controller.isHidden.value,
+                      autocorrect: false,
+                      controller: controller.passC,
+                      textInputAction: TextInputAction.done,
+                      decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                              onPressed: () => controller.isHidden.toggle(),
+                              icon: controller.isHidden.isTrue
+                                  ? Icon(Icons.remove_red_eye)
+                                  : Icon(Icons.remove_red_eye_outlined)),
+                          labelText: "New Password",
+                          border: OutlineInputBorder()),
+                    ),
                   ),
                   SizedBox(
                     height: 20,
@@ -84,6 +104,7 @@ class ProfileView extends GetView<ProfileController> {
                         if (controller.isLoading.isFalse) {
                           //eksekusi register
                           // controller.signup();
+                          controller.updateProfile();
                         }
                       },
                       child: Text(controller.isLoading.isFalse

@@ -35,4 +35,15 @@ class ProfileController extends GetxController {
   Future<void> logout() async {
     await client.auth.signOut();
   }
+
+  void updateProfile() async {
+    if (nameC.text.isNotEmpty) {
+      isLoading.value = true;
+      await client.from("users").update({"name": nameC.text}).match({
+        "uid": client.auth.currentUser!.id,
+      });
+      isLoading.value = false;
+      Get.back();
+    }
+  }
 }
