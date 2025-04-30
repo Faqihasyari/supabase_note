@@ -105,7 +105,7 @@ class ProfileView extends GetView<ProfileController> {
                           //eksekusi register
                           // controller.signup();
                           controller.updateProfile();
-                          if (controller.passC.text.isNotEmpty) {
+                          if (controller.passC.text.isNotEmpty && controller.passC.text.length > 6) {
                             await controller.logout();
                             await authC.reset();
                             Get.offAllNamed(Routes.LOGIN);

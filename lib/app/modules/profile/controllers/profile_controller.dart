@@ -38,17 +38,31 @@ class ProfileController extends GetxController {
 
   Future<void> updateProfile() async {
     if (nameC.text.isNotEmpty) {
+      if (passC.text.isNotEmpty && passC.text.length <= 6) {
+        Get.snackbar("Terjadi Kesalahan", "Password Harus lebih dari 6");
+        return;
+      }
       isLoading.value = true;
+
+      if (passC.text.isNotEmpty) {
+        if (passC.text.length > 6) {
+          try {
+            await client.auth.updateUser(UserAttributes(
+              password: passC.text,
+            ));
+          } catch (e) {
+            Get.snackbar("Terjadi Kesalahan", "$e");
+          }
+        } else {
+          Get.snackbar(
+              "Terjadi Kesalahan", "Password harus lebih dari 6 karakter");
+        }
+
+        //dia sekalian update passworsd
+      }
       await client.from("users").update({"name": nameC.text}).match({
         "uid": client.auth.currentUser!.id,
       });
-
-      if (passC.text.isNotEmpty){
-        //dia sekalian update passworsd
-        await client.auth.updateUser(UserAttributes(
-          password: passC.text,
-        ));
-      }
       isLoading.value = false;
       Get.back();
     }
