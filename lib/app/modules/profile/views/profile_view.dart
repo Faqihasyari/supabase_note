@@ -100,11 +100,16 @@ class ProfileView extends GetView<ProfileController> {
                     height: 50,
                   ),
                   Obx(() => ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (controller.isLoading.isFalse) {
                           //eksekusi register
                           // controller.signup();
                           controller.updateProfile();
+                          if (controller.passC.text.isNotEmpty) {
+                            await controller.logout();
+                            await authC.reset();
+                            Get.offAllNamed(Routes.LOGIN);
+                          }
                         }
                       },
                       child: Text(controller.isLoading.isFalse

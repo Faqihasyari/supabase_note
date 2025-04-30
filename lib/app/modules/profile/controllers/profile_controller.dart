@@ -36,12 +36,19 @@ class ProfileController extends GetxController {
     await client.auth.signOut();
   }
 
-  void updateProfile() async {
+  Future<void> updateProfile() async {
     if (nameC.text.isNotEmpty) {
       isLoading.value = true;
       await client.from("users").update({"name": nameC.text}).match({
         "uid": client.auth.currentUser!.id,
       });
+
+      if (passC.text.isNotEmpty){
+        //dia sekalian update passworsd
+        await client.auth.updateUser(UserAttributes(
+          password: passC.text,
+        ));
+      }
       isLoading.value = false;
       Get.back();
     }
