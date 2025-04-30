@@ -11,20 +11,25 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('HOME'),
-        centerTitle: true,
-        actions: [
-          IconButton(onPressed: () => Get.toNamed(Routes.PROFILE), icon: Icon(Icons.person))
-    
-        ],
-      ),
-      body: const Center(
-        child: Text(
-          'HOMEVIEW',
-          style: TextStyle(fontSize: 20),
+        appBar: AppBar(
+          title: const Text('HOME'),
+          centerTitle: true,
+          actions: [
+            IconButton(
+                onPressed: () => Get.toNamed(Routes.PROFILE),
+                icon: Icon(Icons.person))
+          ],
         ),
-      ),
-    );
+        body: ListView.builder(
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return ListTile(
+              leading: CircleAvatar(
+                child: Text("$index"),
+              ),
+              title: Text("Judul $index"),
+            );
+          },
+        ));
   }
 }
