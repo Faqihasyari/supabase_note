@@ -30,6 +30,7 @@ class HomeView extends GetView<HomeController> {
               title: Text("Judul $index"),
             );
           },
-        ));
+        ),
+        floatingActionButton: FloatingActionButton(onPressed: () => Get.toNamed(Routes.ADD_NOTE),),);
   }
 }
