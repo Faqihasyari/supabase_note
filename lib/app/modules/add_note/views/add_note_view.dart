@@ -36,6 +36,8 @@ class AddNoteView extends GetView<AddNoteController> {
             () => ElevatedButton(onPressed: () {
               if (controller.isLoading.isFalse){
                 //eksekusi addNote
+                controller.addNote();
+                Get.back();
               }
             }, child: Text(controller.isLoading.isFalse ?"ADD NOTE" : "LOADING.....")),
           )

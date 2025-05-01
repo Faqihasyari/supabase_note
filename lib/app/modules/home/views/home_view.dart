@@ -33,7 +33,10 @@ class HomeView extends GetView<HomeController> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.toNamed(Routes.ADD_NOTE),
+        onPressed: () => Get.toNamed(
+          Routes.ADD_NOTE,
+        ),
+        child: Icon(Icons.add),
       ),
     );
   }
