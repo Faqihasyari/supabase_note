@@ -11,7 +11,8 @@ class AddNoteController extends GetxController {
 
   void addNote() async {
     if (titleC.text.isNotEmpty && descC.text.isNotEmpty) {
-      final user = await client
+      isLoading.value = true;
+      var user = await client
           .from("users")
           .select("id")
           .match({"uid": client.auth.currentUser!.id}).single();
@@ -23,6 +24,7 @@ class AddNoteController extends GetxController {
         "desc": descC.text,
         "created_at": DateTime.now().toIso8601String(),
       });
+      isLoading.value = false;
     }
   }
 }
