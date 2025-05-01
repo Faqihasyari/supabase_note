@@ -11,26 +11,30 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('HOME'),
-          centerTitle: true,
-          actions: [
-            IconButton(
-                onPressed: () => Get.toNamed(Routes.PROFILE),
-                icon: Icon(Icons.person))
-          ],
-        ),
-        body: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return ListTile(
-              leading: CircleAvatar(
-                child: Text("$index"),
-              ),
-              title: Text("Judul $index"),
-            );
-          },
-        ),
-        floatingActionButton: FloatingActionButton(onPressed: () => Get.toNamed(Routes.ADD_NOTE),),);
+      appBar: AppBar(
+        title: const Text('HOME'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () => Get.toNamed(Routes.PROFILE),
+              icon: Icon(Icons.person))
+        ],
+      ),
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return ListTile(
+            onTap: () => Get.toNamed(Routes.EDIT_NOTE),
+            leading: CircleAvatar(
+              child: Text("$index"),
+            ),
+            title: Text("Judul $index"),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Get.toNamed(Routes.ADD_NOTE),
+      ),
+    );
   }
 }
