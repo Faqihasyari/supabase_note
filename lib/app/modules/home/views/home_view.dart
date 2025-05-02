@@ -31,7 +31,7 @@ class HomeView extends GetView<HomeController> {
             }
             return Obx(
               () => ListView.builder(
-                itemCount: controller.allNotes.length, 
+                itemCount: controller.allNotes.length,
                 itemBuilder: (context, index) {
                   Note note = controller.allNotes[index];
                   return ListTile(
@@ -39,10 +39,13 @@ class HomeView extends GetView<HomeController> {
                     leading: CircleAvatar(
                       child: Text("${note.id}"),
                     ),
-                    title: Text("Judul ${note.title}"),
+                    title: Text(" ${note.title}"),
                     subtitle: Text("${note.desc}"),
-                    trailing:
-                        IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                    trailing: IconButton(
+                        onPressed: () {
+                          controller.deleteNote(note.id!);
+                        },
+                        icon: Icon(Icons.delete)),
                   );
                 },
               ),

@@ -39,7 +39,7 @@ class AddNoteView extends GetView<AddNoteController> {
                 controller.addNote();
                 Get.back();
               }
-            }, child: Text(controller.isLoading.isFalse ?"ADD NOTE" : "LOADING.....")),
+            }, child: Text(controller.isLoading.isFalse ? "ADD NOTE" : "LOADING.....")),
           )
         ],
       )

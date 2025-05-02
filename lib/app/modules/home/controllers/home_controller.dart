@@ -6,7 +6,7 @@ import 'package:supabase_note/app/routes/app_pages.dart';
 class HomeController extends GetxController {
   RxList allNotes = List<Note>.empty().obs;
   SupabaseClient client = Supabase.instance.client;
-  Future <void> getAllNotes() async {
+  Future<void> getAllNotes() async {
     var user = await client
         .from("users")
         .select("id")
@@ -19,5 +19,10 @@ class HomeController extends GetxController {
     print(allNotes);
     allNotes.refresh;
     print(notes);
+  }
+
+  void deleteNote(int id) async {
+    await client.from("notes").delete().match({"id": id});
+    getAllNotes();
   }
 }
