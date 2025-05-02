@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_note/app/data/models/note_model.dart';
 import 'package:supabase_note/app/routes/app_pages.dart';
 
 class HomeController extends GetxController {
+  RxList allNotes = List<Note>.empty().obs;
     SupabaseClient client = Supabase.instance.client;
   Future getAllNotes()async{
 
@@ -12,7 +14,7 @@ class HomeController extends GetxController {
           .match({"uid": client.auth.currentUser!.id}).single();
 
     var notes = await client.from("notes").select().match({"user_id": user["id"]}).single();
-
+    notes
     print(notes);
   }
 }
