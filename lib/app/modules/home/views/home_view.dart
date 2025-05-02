@@ -20,17 +20,22 @@ class HomeView extends GetView<HomeController> {
               icon: Icon(Icons.person))
         ],
       ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return ListTile(
-            onTap: () => Get.toNamed(Routes.EDIT_NOTE),
-            leading: CircleAvatar(
-              child: Text("$index"),
-            ),
-            title: Text("Judul $index"),
+      body: FutureBuilder(
+        future: controller.getAllNotes(),
+        builder: (context, snapshot) {
+          return ListView.builder(
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return ListTile(
+                onTap: () => Get.toNamed(Routes.EDIT_NOTE),
+                leading: CircleAvatar(
+                  child: Text("$index"),
+                ),
+                title: Text("Judul $index"),
+              );
+            },
           );
-        },
+        }
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.toNamed(
