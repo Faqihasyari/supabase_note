@@ -10,7 +10,7 @@ class AddNoteController extends GetxController {
 
   SupabaseClient client = Supabase.instance.client;
 
-  void addNote() async {
+  Future<bool> addNote() async {
     if (titleC.text.isNotEmpty && descC.text.isNotEmpty) {
       isLoading.value = true;
       var user = await client
@@ -29,7 +29,10 @@ class AddNoteController extends GetxController {
       Get.find<HomeController>().getAllNotes();
 
       isLoading.value = false;
-      Get.back(); // opsional: kembali ke halaman sebelumnya
+      // Get.back(); // opsional: kembali ke halaman sebelumnya
+      return true;
+    } else {
+      return false;
     }
   }
 }

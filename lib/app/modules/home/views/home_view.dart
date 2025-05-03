@@ -39,7 +39,7 @@ class HomeView extends GetView<HomeController> {
                     leading: CircleAvatar(
                       child: Text("${note.id}"),
                     ),
-                    title: Text(" ${note.title}"),
+                    title: Text("${note.title}"),
                     subtitle: Text("${note.desc}"),
                     trailing: IconButton(
                         onPressed: () {

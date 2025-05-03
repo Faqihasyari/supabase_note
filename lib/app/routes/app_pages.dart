@@ -43,7 +43,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ADD_NOTE,
-      page: () => const AddNoteView(),
+      page: () =>  AddNoteView(),
       binding: AddNoteBinding(),
     ),
     GetPage(
