@@ -10,6 +10,7 @@ class EditNoteView extends GetView<EditNoteController> {
   EditNoteView({super.key});
   @override
   Widget build(BuildContext context) {
+    controller.titleC.text = note.title!;
     return Scaffold(
       appBar: AppBar(
         title: const Text('EDIT NOTE'),
