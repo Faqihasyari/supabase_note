@@ -30,7 +30,9 @@ class HomeView extends GetView<HomeController> {
               );
             }
             return Obx(
-              () => ListView.builder(
+              () => controller.allNotes.isEmpty ? Center(
+                child: Text("TIDAK ADA DATA NOTE"),
+              ) : ListView.builder(
                 itemCount: controller.allNotes.length,
                 itemBuilder: (context, index) {
                   Note note = controller.allNotes[index];
