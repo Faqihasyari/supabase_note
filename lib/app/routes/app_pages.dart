@@ -48,7 +48,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.EDIT_NOTE,
-      page: () => const EditNoteView(),
+      page: () =>  EditNoteView(),
       binding: EditNoteBinding(),
     ),
   ];
